@@ -11,31 +11,13 @@ import Animated, {
 import { useAppTheme } from "@/theme/context";
 
 interface SkeletonBoxProps {
-  /**
-   * Width of the skeleton box
-   */
   width?: DimensionValue;
-  /**
-   * Height of the skeleton box
-   */
   height?: DimensionValue;
-  /**
-   * Border radius of the skeleton box
-   */
   borderRadius?: number;
-  /**
-   * Custom style overrides
-   */
   style?: ViewStyle;
-  /**
-   * Animation duration in milliseconds
-   */
   duration?: number;
 }
 
-/**
- * A skeleton loading component with shimmer animation
- */
 export const SkeletonBox: FC<SkeletonBoxProps> = ({
   width = "100%",
   height = 20,

@@ -18,13 +18,6 @@ module.exports = {
     "@typescript-eslint/array-type": 0,
     "@typescript-eslint/ban-ts-comment": 0,
     "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_",
-      },
-    ],
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-require-imports": 0,
     "@typescript-eslint/no-empty-object-type": 0,
@@ -101,5 +94,16 @@ module.exports = {
       },
     ],
     "import/newline-after-import": 1,
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        vars: "all",
+        args: "after-used",
+        ignoreRestSiblings: false,
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+      },
+    ],
   },
 }

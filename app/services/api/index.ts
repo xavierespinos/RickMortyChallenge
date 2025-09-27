@@ -9,7 +9,7 @@ import { ApisauceInstance, create } from "apisauce";
 
 import Config from "@/config";
 
-import type { ApiConfig, EpisodeDTO, PaginatedResponse } from "./types";
+import type { ApiConfig, CharacterDTO, EpisodeDTO, PaginatedResponse } from "./types";
 
 /**
  * Configuring the apisauce instance.
@@ -49,6 +49,30 @@ export class Api {
       throw new Error(response.problem || "Unknown error");
     }
     return response.data;
+  }
+
+  /**
+   * Fetch multiple characters by their URLs
+   * This is the most efficient approach since episode.characters contains URLs
+   */
+  async getCharactersByUrls(urls: string[]): Promise<CharacterDTO[]> {
+    // Extract character IDs from URLs (e.g., "https://rickandmortyapi.com/api/character/1" -> "1")
+    const ids = urls.map((url) => url.split("/").pop()).filter(Boolean);
+
+    if (ids.length === 0) return [];
+
+    // API supports fetching multiple characters: /character/1,2,3
+    const idsParam = ids.join(",");
+    const response = await this.apisauce.get<CharacterDTO[] | CharacterDTO>(
+      `/character/${idsParam}`,
+    );
+
+    if (!response.ok || !response.data) {
+      throw new Error(response.problem || "Unknown error");
+    }
+
+    // API returns single object if only one ID, array if multiple
+    return Array.isArray(response.data) ? response.data : [response.data];
   }
 }
 

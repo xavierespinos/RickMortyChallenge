@@ -1,12 +1,14 @@
-import { EpisodeDTO } from "@/services/api/types";
 import { FC } from "react";
-import { Card } from "./Card";
 import { View } from "react-native";
+
 import { Text } from "@/components/Text";
+import { EpisodeDTO } from "@/services/api/types";
+
+import { Card } from "./Card";
 
 interface Props {
   episode: EpisodeDTO;
-  onPress?: () => VoidFunction;
+  onPress?: VoidFunction;
 }
 
 const EpisodeCard: FC<Props> = ({ episode, onPress }) => {

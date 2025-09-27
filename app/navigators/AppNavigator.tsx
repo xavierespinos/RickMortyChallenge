@@ -1,51 +1,38 @@
-/**
- * The app navigator (formerly "AppNavigator" and "MainNavigator") is used for the primary
- * navigation flows of your app.
- * Generally speaking, it will contain an auth flow (registration, login, forgot password)
- * and a "main" flow which the user will use once logged in.
- */
-import { ComponentProps } from "react"
-import { NavigationContainer } from "@react-navigation/native"
-import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
+import { ComponentProps } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import Config from "@/config"
-import { ErrorBoundary } from "@/screens/ErrorScreen/ErrorBoundary"
-import { HomeScreen } from "@/screens/HomeScreen"
-import { useAppTheme } from "@/theme/context"
+import Config from "@/config";
+import EpisodeScreen from "@/screens/EpisodeScreen";
+import { ErrorBoundary } from "@/screens/ErrorScreen/ErrorBoundary";
+import { HomeScreen } from "@/screens/HomeScreen";
+import { EpisodeDTO } from "@/services/api/types";
+import { useAppTheme } from "@/theme/context";
 
-import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
+import { navigationRef, useBackButtonHandler } from "./navigationUtilities";
 
-/**
- * This type allows TypeScript to know what routes are defined in this navigator
- * as well as what properties (if any) they might take when navigating to them.
- *
- * For more information, see this documentation:
- *   https://reactnavigation.org/docs/params/
- *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
- *   https://reactnavigation.org/docs/typescript/#organizing-types
- */
 export type AppStackParamList = {
-  Home: undefined
-}
+  Home: undefined;
+  Episode: { episode: EpisodeDTO };
+};
 
 /**
  * This is a list of all the route names that will exit the app if the back button
  * is pressed while in that screen. Only affects Android.
  */
-const exitRoutes = Config.exitRoutes
+const exitRoutes = Config.exitRoutes;
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<
   AppStackParamList,
   T
->
+>;
 
-// Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<AppStackParamList>()
+const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppStack = () => {
   const {
     theme: { colors },
-  } = useAppTheme()
+  } = useAppTheme();
 
   return (
     <Stack.Navigator
@@ -55,21 +42,21 @@ const AppStack = () => {
         contentStyle: {
           backgroundColor: colors.background,
         },
-        title: "Episodes",
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Home" }} />
+      <Stack.Screen name="Episode" component={EpisodeScreen} />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
 export interface NavigationProps
   extends Partial<ComponentProps<typeof NavigationContainer<AppStackParamList>>> {}
 
 export const AppNavigator = (props: NavigationProps) => {
-  const { navigationTheme } = useAppTheme()
+  const { navigationTheme } = useAppTheme();
 
-  useBackButtonHandler((routeName) => exitRoutes.includes(routeName))
+  useBackButtonHandler((routeName) => exitRoutes.includes(routeName));
 
   return (
     <NavigationContainer ref={navigationRef} theme={navigationTheme} {...props}>
@@ -77,5 +64,5 @@ export const AppNavigator = (props: NavigationProps) => {
         <AppStack />
       </ErrorBoundary>
     </NavigationContainer>
-  )
-}
+  );
+};

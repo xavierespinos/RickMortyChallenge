@@ -43,6 +43,8 @@ export class Api {
 
   async getEpisodes(): Promise<PaginatedResponse<EpisodeDTO>> {
     const response = await this.apisauce.get<PaginatedResponse<EpisodeDTO>>("/episode");
+    // add timeout for loading state visibility
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     if (!response.ok || !response.data) {
       throw new Error(response.problem || "Unknown error");
     }

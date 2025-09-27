@@ -1,9 +1,10 @@
 import { FC } from "react";
-import { ActivityIndicator, FlatList, RefreshControl, View } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import EpisodeCard from "@/components/EpisodeCard";
 import EpisodeCardSkeleton from "@/components/EpisodeCardSkeleton";
+import MortySpinner from "@/components/MortySpinner";
 import { Screen } from "@/components/Screen";
 import useGetEpisodes from "@/hooks/useGetEpisodes";
 import type { AppStackScreenProps } from "@/navigators/AppNavigator";
@@ -46,7 +47,7 @@ export const HomeScreen: FC<AppStackScreenProps<"Home">> = () => {
           ListFooterComponent={
             isFetchingNextPage ? (
               <View style={{ padding: 20, alignItems: "center" }}>
-                <ActivityIndicator size="large" />
+                <MortySpinner spinning={isFetchingNextPage} />
               </View>
             ) : null
           }

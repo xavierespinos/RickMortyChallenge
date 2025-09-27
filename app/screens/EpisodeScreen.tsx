@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { FlatList, Image, View, Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Screen } from "@/components/Screen";
 import SkeletonBox from "@/components/SkeletonBox";
@@ -11,11 +12,19 @@ import type { CharacterDTO } from "@/services/api/types";
 const EpisodeScreen: FC<AppStackScreenProps<"Episode">> = ({ route }) => {
   const { episode } = route.params;
   const { isLoading, data: characters } = useGetEpisodeCharacters(episode.characters);
+  const navigation = useNavigation<AppStackScreenProps<"Episode">["navigation"]>();
 
   const screenWidth = Dimensions.get("window").width;
   const padding = 20;
   const numColumns = 2;
   const itemWidth = (screenWidth - padding * 2 - 10) / numColumns; // 10 for gap
+
+  //update screen title to include the episode name
+  useEffect(() => {
+    navigation.setOptions({
+      title: episode.episode,
+    });
+  }, [navigation, episode.episode]);
 
   const renderCharacter = ({ item }: { item: CharacterDTO }) => (
     <View style={{ width: itemWidth, marginBottom: 15 }}>

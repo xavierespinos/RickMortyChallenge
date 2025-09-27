@@ -48,17 +48,13 @@ export class Api {
 
     const response = await this.apisauce.get<PaginatedResponse<EpisodeDTO>>("/episode", params);
     // add timeout for loading state visibility
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     if (!response.ok || !response.data) {
       throw new Error(response.problem || "Unknown error");
     }
     return response.data;
   }
 
-  /**
-   * Fetch multiple characters by their URLs
-   * This is the most efficient approach since episode.characters contains URLs
-   */
   async getCharactersByUrls(urls: string[]): Promise<CharacterDTO[]> {
     // Extract character IDs from URLs (e.g., "https://rickandmortyapi.com/api/character/1" -> "1")
     const ids = urls.map((url) => url.split("/").pop()).filter(Boolean);

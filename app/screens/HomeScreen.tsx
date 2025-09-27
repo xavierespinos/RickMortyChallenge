@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FlatList, RefreshControl, View } from "react-native";
+import { ActivityIndicator, FlatList, RefreshControl, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import EpisodeCard from "@/components/EpisodeCard";
@@ -10,8 +10,11 @@ import type { AppStackScreenProps } from "@/navigators/AppNavigator";
 import type { EpisodeDTO } from "@/services/api/types";
 
 export const HomeScreen: FC<AppStackScreenProps<"Home">> = () => {
-  const { data, isLoading, refetch, isRefetching } = useGetEpisodes();
+  const { data, isLoading, refetch, isRefetching, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetEpisodes();
   const navigation = useNavigation<AppStackScreenProps<"Home">["navigation"]>();
+
+  const allEpisodes = data?.pages.flatMap((page) => page.results) ?? [];
 
   return (
     <Screen preset="fixed" contentContainerStyle={{ padding: 10 }}>
@@ -23,7 +26,7 @@ export const HomeScreen: FC<AppStackScreenProps<"Home">> = () => {
         </View>
       ) : (
         <FlatList
-          data={data?.results}
+          data={allEpisodes}
           renderItem={({ item }: { item: EpisodeDTO }) => (
             <EpisodeCard
               episode={item}
@@ -34,6 +37,19 @@ export const HomeScreen: FC<AppStackScreenProps<"Home">> = () => {
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
           refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
+          onEndReached={() => {
+            if (hasNextPage && !isFetchingNextPage) {
+              fetchNextPage();
+            }
+          }}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={
+            isFetchingNextPage ? (
+              <View style={{ padding: 20, alignItems: "center" }}>
+                <ActivityIndicator size="large" />
+              </View>
+            ) : null
+          }
         />
       )}
     </Screen>

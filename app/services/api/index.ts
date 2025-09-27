@@ -41,8 +41,12 @@ export class Api {
     });
   }
 
-  async getEpisodes(): Promise<PaginatedResponse<EpisodeDTO>> {
-    const response = await this.apisauce.get<PaginatedResponse<EpisodeDTO>>("/episode");
+  async getEpisodes(page?: number): Promise<PaginatedResponse<EpisodeDTO>> {
+    const params: Record<string, string | number> = {};
+
+    if (page) params.page = page;
+
+    const response = await this.apisauce.get<PaginatedResponse<EpisodeDTO>>("/episode", params);
     // add timeout for loading state visibility
     await new Promise((resolve) => setTimeout(resolve, 1000));
     if (!response.ok || !response.data) {

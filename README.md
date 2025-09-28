@@ -1,77 +1,142 @@
-# Welcome to your new ignited app!
+# Rick & Morty App
 
-> The latest and greatest boilerplate for Infinite Red opinions
+A React Native application built with Expo that displays episodes and characters from the Rick and Morty TV series using the [Rick and Morty API](https://rickandmortyapi.com/).
 
-This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
+## Features
 
-- [Quick start documentation](https://github.com/infinitered/ignite/blob/master/docs/boilerplate/Boilerplate.md)
-- [Full documentation](https://github.com/infinitered/ignite/blob/master/docs/README.md)
+- Browse episodes with infinite scroll pagination
+- View character details for each episode
+- Optimized with React Query for data caching
+- Custom loading animations with Morty spinner
 
-## Getting Started
+## Tech Stack
+
+- **React Native** with **Expo**
+- **TypeScript** for type safety
+- **React Query** for data fetching and caching
+- **React Navigation** for navigation
+- **React Reanimated** for animations
+- **i18next** for internationalization
+- **Apisauce** for API client
+- **ESLint** and **Prettier** for code quality
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone <repository-url>
+   cd RickMortyChallenge
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   yarn install
+   ```
+
+3. **Set up environment variables:**
+   ```bash
+   cp .env.example .env
+   ```
+   The `.env` file contains:
+   ```
+   EXPO_PUBLIC_API_BASE_URL=https://rickandmortyapi.com/api
+   ```
+
+## Running the App
+
+### Development Server
+
+Start the Expo development server:
 
 ```bash
-yarn install
 yarn start
 ```
 
-To make things work on your local simulator, or on your phone, you need first to [run `eas build`](https://github.com/infinitered/ignite/blob/master/docs/expo/EAS.md). We have many shortcuts on `package.json` to make it easier:
+This will open the Expo DevTools in your browser where you can:
+
+- Scan the QR code with Expo Go app on your phone
+- Press `i` to open iOS Simulator
+- Press `a` to open Android Emulator
+- Press `w` to open in web browser
+
+### Platform-Specific Commands
+
+#### iOS
 
 ```bash
-yarn build:ios:sim # build for ios simulator
-yarn build:ios:dev # build for ios device
-yarn build:ios:prod # build for ios device
+yarn ios
 ```
 
-### `./assets` directory
+#### Android
 
-This directory is designed to organize and store various assets, making it easy for you to manage and use them in your application. The assets are further categorized into subdirectories, including `icons` and `images`:
-
-```tree
-assets
-├── icons
-└── images
+```bash
+yarn android
 ```
 
-**icons**
-This is where your icon assets will live. These icons can be used for buttons, navigation elements, or any other UI components. The recommended format for icons is PNG, but other formats can be used as well.
+#### Web
 
-Ignite comes with a built-in `Icon` component. You can find detailed usage instructions in the [docs](https://github.com/infinitered/ignite/blob/master/docs/boilerplate/app/components/Icon.md).
-
-**images**
-This is where your images will live, such as background images, logos, or any other graphics. You can use various formats such as PNG, JPEG, or GIF for your images.
-
-Another valuable built-in component within Ignite is the `AutoImage` component. You can find detailed usage instructions in the [docs](https://github.com/infinitered/ignite/blob/master/docs/Components-AutoImage.md).
-
-How to use your `icon` or `image` assets:
-
-```typescript
-import { Image } from 'react-native';
-
-const MyComponent = () => {
-  return (
-    <Image source={require('assets/images/my_image.png')} />
-  );
-};
+```bash
+yarn web
 ```
 
-## Running Maestro end-to-end tests
+## Available Scripts
 
-Follow our [Maestro Setup](https://ignitecookbook.com/docs/recipes/MaestroSetup) recipe.
+| Script            | Description                   |
+| ----------------- | ----------------------------- |
+| `yarn start`      | Start Expo development server |
+| `yarn ios`        | Run on iOS simulator          |
+| `yarn android`    | Run on Android emulator       |
+| `yarn web`        | Run in web browser            |
+| `yarn compile`    | Type-check with TypeScript    |
+| `yarn lint`       | Run ESLint and fix issues     |
+| `yarn lint:check` | Check linting without fixing  |
+| `yarn test`       | Run Jest tests                |
+| `yarn test:watch` | Run tests in watch mode       |
 
-## Next Steps
+## Project Structure
 
-### Ignite Cookbook
+```
+app/
+├── components/        # Reusable UI components
+│   ├── atoms/         # Basic components (Text, Screen, etc.)
+│   └── molecules/     # Composite components (EpisodeCard, etc.)
+├── hooks/             # Custom React hooks
+├── i18n/              # Internationalization files
+├── navigators/        # Navigation configuration
+├── screens/           # Screen components
+├── services/          # API services
+├── theme/             # Theme configuration
+└── utils/             # Utility functions
+```
 
-[Ignite Cookbook](https://ignitecookbook.com/) is an easy way for developers to browse and share code snippets (or “recipes”) that actually work.
+## API Integration
 
-### Upgrade Ignite boilerplate
+The app uses the Rick and Morty API to fetch:
 
-Read our [Upgrade Guide](https://ignitecookbook.com/docs/recipes/UpdatingIgnite) to learn how to upgrade your Ignite project.
+- **Episodes**: Paginated list with infinite scroll
+- **Characters**: Batch fetching for episode characters
 
-## Community
+All API calls are cached using React Query for optimal performance.
 
-⭐️ Help us out by [starring on GitHub](https://github.com/infinitered/ignite), filing bug reports in [issues](https://github.com/infinitered/ignite/issues) or [ask questions](https://github.com/infinitered/ignite/discussions).
+## Internationalization
 
-💬 Join us on [Slack](https://join.slack.com/t/infiniteredcommunity/shared_invite/zt-1f137np4h-zPTq_CbaRFUOR_glUFs2UA) to discuss.
+The app supports multiple languages:
 
-📰 Make our Editor-in-chief happy by [reading the React Native Newsletter](https://reactnativenewsletter.com/).
+- English (default)
+- Spanish
+- French
+
+Language files are located in `app/i18n/` and the app automatically detects the device language.
+
+## Development
+
+### Code Quality
+
+The project uses:
+
+- **ESLint** with strict rules
+- **Prettier** for code formatting
+- **TypeScript** for type safety
+- **Themed styling** instead of inline styles

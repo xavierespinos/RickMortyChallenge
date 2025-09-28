@@ -44,7 +44,7 @@ export const MortySpinner: FC<MortySpinnerProps> = ({
   return (
     <Animated.View style={[animatedStyle, style]}>
       <Image
-        source={require("../../assets/icons/mortyIcon.png")}
+        source={require("../../../assets/icons/mortyIcon.png")}
         style={imageStyle}
         resizeMode="contain"
       />

@@ -1,10 +1,16 @@
-import { Translations } from "./en"
+import { Translations } from "./en";
 
 const fr: Translations = {
   common: {
     ok: "OK !",
     cancel: "Annuler",
     back: "Retour",
+    episode: "Épisode",
+    airDate: "Date de diffusion",
+    characters: "Personnages",
+  },
+  navigation: {
+    home: "Accueil",
   },
   welcomeScreen: {
     postscript:
@@ -26,6 +32,11 @@ const fr: Translations = {
       button: "Essayons à nouveau",
     },
   },
-}
+  episodeScreen: {
+    episodeLabel: "Épisode: {{episode}}",
+    airDateLabel: "Date de diffusion: {{airDate}}",
+    charactersLabel: "Personnages: {{count}}",
+  },
+};
 
-export default fr
+export default fr;

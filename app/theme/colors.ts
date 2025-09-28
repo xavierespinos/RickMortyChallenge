@@ -1,39 +1,39 @@
 const palette = {
-  neutral100: "#FFFFFF",
-  neutral200: "#F4F2F1",
-  neutral300: "#D7CEC9",
-  neutral400: "#B6ACA6",
-  neutral500: "#978F8A",
-  neutral600: "#564E4A",
-  neutral700: "#3C3836",
-  neutral800: "#191015",
-  neutral900: "#000000",
+  neutral100: "#FAF8F5",
+  neutral200: "#F0EBE3",
+  neutral300: "#E0D5C7",
+  neutral400: "#C8B99C",
+  neutral500: "#A0926B",
+  neutral600: "#6B5D42",
+  neutral700: "#4A3F2A",
+  neutral800: "#2E251A",
+  neutral900: "#1A140E",
 
-  primary100: "#F4E0D9",
-  primary200: "#E8C1B4",
-  primary300: "#DDA28E",
-  primary400: "#D28468",
-  primary500: "#C76542",
-  primary600: "#A54F31",
+  primary100: "#d9fe83",
+  primary200: "#c0ed2d",
+  primary300: "#8eb01f",
+  primary400: "#809f1b",
+  primary500: "#596f10",
+  primary600: "#435509",
 
-  secondary100: "#DCDDE9",
-  secondary200: "#BCC0D6",
-  secondary300: "#9196B9",
-  secondary400: "#626894",
-  secondary500: "#41476E",
+  secondary100: "#E8EDE6",
+  secondary200: "#D2DCC8",
+  secondary300: "#B8C7A6",
+  secondary400: "#95A373",
+  secondary500: "#6F7A52",
 
-  accent100: "#FFEED4",
-  accent200: "#FFE1B2",
-  accent300: "#FDD495",
-  accent400: "#FBC878",
-  accent500: "#FFBB50",
+  accent100: "#F2E6D8",
+  accent200: "#E6CDB1",
+  accent300: "#D4B088",
+  accent400: "#C29060",
+  accent500: "#A67C52",
 
-  angry100: "#F2D6CD",
-  angry500: "#C03403",
+  angry100: "#F4E5D3",
+  angry500: "#B8652F",
 
-  overlay20: "rgba(25, 16, 21, 0.2)",
-  overlay50: "rgba(25, 16, 21, 0.5)",
-} as const
+  overlay20: "rgba(26, 20, 14, 0.2)",
+  overlay50: "rgba(26, 20, 14, 0.5)",
+} as const;
 
 export const colors = {
   /**
@@ -82,4 +82,4 @@ export const colors = {
    * Error Background.
    */
   errorBackground: palette.angry100,
-} as const
+} as const;

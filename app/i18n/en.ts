@@ -3,6 +3,12 @@ const en = {
     ok: "OK!",
     cancel: "Cancel",
     back: "Back",
+    episode: "Episode",
+    airDate: "Air Date",
+    characters: "Characters",
+  },
+  navigation: {
+    home: "Home",
   },
   welcomeScreen: {
     postscript:
@@ -23,7 +29,12 @@ const en = {
       button: "Let's try this again",
     },
   },
-}
+  episodeScreen: {
+    episodeLabel: "Episode: {{episode}}",
+    airDateLabel: "Air Date: {{airDate}}",
+    charactersLabel: "Characters: {{count}}",
+  },
+};
 
-export default en
-export type Translations = typeof en
+export default en;
+export type Translations = typeof en;

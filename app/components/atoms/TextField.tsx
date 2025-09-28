@@ -1,4 +1,4 @@
-import { ComponentType, forwardRef, Ref, useImperativeHandle, useRef } from "react"
+import { ComponentType, forwardRef, Ref, useImperativeHandle, useRef } from "react";
 import {
   ImageStyle,
   StyleProp,
@@ -9,99 +9,98 @@ import {
   TouchableOpacity,
   View,
   ViewStyle,
-} from "react-native"
+} from "react-native";
 
-import { isRTL } from "@/i18n"
-import { translate } from "@/i18n/translate"
-import type { ThemedStyle, ThemedStyleArray } from "@/theme/types"
-import { useAppTheme } from "@/theme/context"
-import { $styles } from "@/theme/styles"
-
-import { Text, TextProps } from "./Text"
+import { Text, TextProps } from "@/components/atoms/Text";
+import { isRTL } from "@/i18n";
+import { translate } from "@/i18n/translate";
+import { useAppTheme } from "@/theme/context";
+import { $styles } from "@/theme/styles";
+import type { ThemedStyle, ThemedStyleArray } from "@/theme/types";
 
 export interface TextFieldAccessoryProps {
-  style: StyleProp<ViewStyle | TextStyle | ImageStyle>
-  status: TextFieldProps["status"]
-  multiline: boolean
-  editable: boolean
+  style: StyleProp<ViewStyle | TextStyle | ImageStyle>;
+  status: TextFieldProps["status"];
+  multiline: boolean;
+  editable: boolean;
 }
 
 export interface TextFieldProps extends Omit<TextInputProps, "ref"> {
   /**
    * A style modifier for different input states.
    */
-  status?: "error" | "disabled"
+  status?: "error" | "disabled";
   /**
    * The label text to display if not using `labelTx`.
    */
-  label?: TextProps["text"]
+  label?: TextProps["text"];
   /**
    * Label text which is looked up via i18n.
    */
-  labelTx?: TextProps["tx"]
+  labelTx?: TextProps["tx"];
   /**
    * Optional label options to pass to i18n. Useful for interpolation
    * as well as explicitly setting locale or translation fallbacks.
    */
-  labelTxOptions?: TextProps["txOptions"]
+  labelTxOptions?: TextProps["txOptions"];
   /**
    * Pass any additional props directly to the label Text component.
    */
-  LabelTextProps?: TextProps
+  LabelTextProps?: TextProps;
   /**
    * The helper text to display if not using `helperTx`.
    */
-  helper?: TextProps["text"]
+  helper?: TextProps["text"];
   /**
    * Helper text which is looked up via i18n.
    */
-  helperTx?: TextProps["tx"]
+  helperTx?: TextProps["tx"];
   /**
    * Optional helper options to pass to i18n. Useful for interpolation
    * as well as explicitly setting locale or translation fallbacks.
    */
-  helperTxOptions?: TextProps["txOptions"]
+  helperTxOptions?: TextProps["txOptions"];
   /**
    * Pass any additional props directly to the helper Text component.
    */
-  HelperTextProps?: TextProps
+  HelperTextProps?: TextProps;
   /**
    * The placeholder text to display if not using `placeholderTx`.
    */
-  placeholder?: TextProps["text"]
+  placeholder?: TextProps["text"];
   /**
    * Placeholder text which is looked up via i18n.
    */
-  placeholderTx?: TextProps["tx"]
+  placeholderTx?: TextProps["tx"];
   /**
    * Optional placeholder options to pass to i18n. Useful for interpolation
    * as well as explicitly setting locale or translation fallbacks.
    */
-  placeholderTxOptions?: TextProps["txOptions"]
+  placeholderTxOptions?: TextProps["txOptions"];
   /**
    * Optional input style override.
    */
-  style?: StyleProp<TextStyle>
+  style?: StyleProp<TextStyle>;
   /**
    * Style overrides for the container
    */
-  containerStyle?: StyleProp<ViewStyle>
+  containerStyle?: StyleProp<ViewStyle>;
   /**
    * Style overrides for the input wrapper
    */
-  inputWrapperStyle?: StyleProp<ViewStyle>
+  inputWrapperStyle?: StyleProp<ViewStyle>;
   /**
    * An optional component to render on the right side of the input.
    * Example: `RightAccessory={(props) => <Icon icon="ladybug" containerStyle={props.style} color={props.editable ? colors.textDim : colors.text} />}`
    * Note: It is a good idea to memoize this.
    */
-  RightAccessory?: ComponentType<TextFieldAccessoryProps>
+  RightAccessory?: ComponentType<TextFieldAccessoryProps>;
   /**
    * An optional component to render on the left side of the input.
    * Example: `LeftAccessory={(props) => <Icon icon="ladybug" containerStyle={props.style} color={props.editable ? colors.textDim : colors.text} />}`
    * Note: It is a good idea to memoize this.
    */
-  LeftAccessory?: ComponentType<TextFieldAccessoryProps>
+  LeftAccessory?: ComponentType<TextFieldAccessoryProps>;
 }
 
 /**
@@ -130,23 +129,23 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
     containerStyle: $containerStyleOverride,
     inputWrapperStyle: $inputWrapperStyleOverride,
     ...TextInputProps
-  } = props
-  const input = useRef<TextInput>(null)
+  } = props;
+  const input = useRef<TextInput>(null);
 
   const {
     themed,
     theme: { colors },
-  } = useAppTheme()
+  } = useAppTheme();
 
-  const disabled = TextInputProps.editable === false || status === "disabled"
+  const disabled = TextInputProps.editable === false || status === "disabled";
 
   const placeholderContent = placeholderTx
     ? translate(placeholderTx, placeholderTxOptions)
-    : placeholder
+    : placeholder;
 
-  const $containerStyles = [$containerStyleOverride]
+  const $containerStyles = [$containerStyleOverride];
 
-  const $labelStyles = [$labelStyle, LabelTextProps?.style]
+  const $labelStyles = [$labelStyle, LabelTextProps?.style];
 
   const $inputWrapperStyles = [
     $styles.row,
@@ -156,7 +155,7 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
     LeftAccessory && { paddingStart: 0 },
     RightAccessory && { paddingEnd: 0 },
     $inputWrapperStyleOverride,
-  ]
+  ];
 
   const $inputStyles: ThemedStyleArray<TextStyle> = [
     $inputStyle,
@@ -164,24 +163,24 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
     isRTL && { textAlign: "right" as TextStyle["textAlign"] },
     TextInputProps.multiline && { height: "auto" },
     $inputStyleOverride,
-  ]
+  ];
 
   const $helperStyles = [
     $helperStyle,
     status === "error" && { color: colors.error },
     HelperTextProps?.style,
-  ]
+  ];
 
   /**
    *
    */
   function focusInput() {
-    if (disabled) return
+    if (disabled) return;
 
-    input.current?.focus()
+    input.current?.focus();
   }
 
-  useImperativeHandle(ref, () => input.current as TextInput)
+  useImperativeHandle(ref, () => input.current as TextInput);
 
   return (
     <TouchableOpacity
@@ -243,12 +242,12 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
         />
       )}
     </TouchableOpacity>
-  )
-})
+  );
+});
 
 const $labelStyle: ThemedStyle<TextStyle> = ({ spacing }) => ({
   marginBottom: spacing.xs,
-})
+});
 
 const $inputWrapperStyle: ThemedStyle<ViewStyle> = ({ colors }) => ({
   alignItems: "flex-start",
@@ -257,7 +256,7 @@ const $inputWrapperStyle: ThemedStyle<ViewStyle> = ({ colors }) => ({
   backgroundColor: colors.palette.neutral200,
   borderColor: colors.palette.neutral400,
   overflow: "hidden",
-})
+});
 
 const $inputStyle: ThemedStyle<TextStyle> = ({ colors, typography, spacing }) => ({
   flex: 1,
@@ -271,22 +270,22 @@ const $inputStyle: ThemedStyle<TextStyle> = ({ colors, typography, spacing }) =>
   paddingHorizontal: 0,
   marginVertical: spacing.xs,
   marginHorizontal: spacing.sm,
-})
+});
 
 const $helperStyle: ThemedStyle<TextStyle> = ({ spacing }) => ({
   marginTop: spacing.xs,
-})
+});
 
 const $rightAccessoryStyle: ThemedStyle<ViewStyle> = ({ spacing }) => ({
   marginEnd: spacing.xs,
   height: 40,
   justifyContent: "center",
   alignItems: "center",
-})
+});
 
 const $leftAccessoryStyle: ThemedStyle<ViewStyle> = ({ spacing }) => ({
   marginStart: spacing.xs,
   height: 40,
   justifyContent: "center",
   alignItems: "center",
-})
+});

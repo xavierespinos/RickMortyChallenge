@@ -1,10 +1,9 @@
 import { FC } from "react";
 import { View } from "react-native";
 
-import { Text } from "@/components/Text";
+import { Card } from "@/components/atoms/Card";
+import { Text } from "@/components/atoms/Text";
 import { EpisodeDTO } from "@/services/api/types";
-
-import { Card } from "./Card";
 
 interface Props {
   episode: EpisodeDTO;

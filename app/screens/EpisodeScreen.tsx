@@ -2,9 +2,9 @@ import { FC, useEffect } from "react";
 import { FlatList, Image, View, Dimensions, ViewStyle, ImageStyle, TextStyle } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { Screen } from "@/components/Screen";
-import SkeletonBox from "@/components/SkeletonBox";
-import { Text } from "@/components/Text";
+import { Screen } from "@/components/atoms/Screen";
+import SkeletonBox from "@/components/atoms/SkeletonBox";
+import { Text } from "@/components/atoms/Text";
 import useGetEpisodeCharacters from "@/hooks/useGetEpisodeCharacters";
 import type { AppStackScreenProps } from "@/navigators/AppNavigator";
 import type { CharacterDTO } from "@/services/api/types";

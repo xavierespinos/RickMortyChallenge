@@ -2,10 +2,10 @@ import { FC } from "react";
 import { FlatList, RefreshControl, View, ViewStyle } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import EpisodeCard from "@/components/EpisodeCard";
-import EpisodeCardSkeleton from "@/components/EpisodeCardSkeleton";
-import MortySpinner from "@/components/MortySpinner";
-import { Screen } from "@/components/Screen";
+import { Screen } from "@/components/atoms/Screen";
+import EpisodeCard from "@/components/molecules/EpisodeCard";
+import EpisodeCardSkeleton from "@/components/molecules/EpisodeCardSkeleton";
+import MortySpinner from "@/components/molecules/MortySpinner";
 import useGetEpisodes from "@/hooks/useGetEpisodes";
 import type { AppStackScreenProps } from "@/navigators/AppNavigator";
 import type { EpisodeDTO } from "@/services/api/types";

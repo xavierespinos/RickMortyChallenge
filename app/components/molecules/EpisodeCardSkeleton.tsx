@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { View, ViewStyle } from "react-native";
 
+import { Card } from "@/components/atoms/Card";
 import { useAppTheme } from "@/theme/context";
 import type { ThemedStyle } from "@/theme/types";
 
-import { Card } from "./Card";
-import SkeletonBox from "./SkeletonBox";
+import SkeletonBox from "../atoms/SkeletonBox";
 
 const EpisodeCardSkeleton: FC = () => {
   const { themed } = useAppTheme();

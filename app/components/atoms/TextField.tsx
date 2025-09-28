@@ -11,13 +11,12 @@ import {
   ViewStyle,
 } from "react-native";
 
+import { Text, TextProps } from "@/components/atoms/Text";
 import { isRTL } from "@/i18n";
 import { translate } from "@/i18n/translate";
 import { useAppTheme } from "@/theme/context";
 import { $styles } from "@/theme/styles";
 import type { ThemedStyle, ThemedStyleArray } from "@/theme/types";
-
-import { Text, TextProps } from "./Text";
 
 export interface TextFieldAccessoryProps {
   style: StyleProp<ViewStyle | TextStyle | ImageStyle>;

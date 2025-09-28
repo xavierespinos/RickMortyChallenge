@@ -7,32 +7,19 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+import { timing } from "@/theme/timing";
+
 interface MortySpinnerProps {
-  /**
-   * Size of the spinner icon
-   */
   size?: number;
-  /**
-   * Whether the spinner should be animating
-   */
   spinning?: boolean;
-  /**
-   * Animation duration in milliseconds
-   */
   duration?: number;
-  /**
-   * Custom style overrides
-   */
   style?: ViewStyle;
 }
 
-/**
- * Animated Morty icon spinner component
- */
 export const MortySpinner: FC<MortySpinnerProps> = ({
   size = 40,
   spinning = true,
-  duration = 1000,
+  duration = timing.extraLong,
   style,
 }) => {
   const rotation = useSharedValue(0);

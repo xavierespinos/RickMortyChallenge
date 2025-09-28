@@ -9,6 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useAppTheme } from "@/theme/context";
+import { timing } from "@/theme/timing";
 
 interface SkeletonBoxProps {
   width?: DimensionValue;
@@ -23,7 +24,7 @@ export const SkeletonBox: FC<SkeletonBoxProps> = ({
   height = 20,
   borderRadius = 4,
   style,
-  duration = 1500,
+  duration = timing.extraExtraLong,
 }) => {
   const { theme } = useAppTheme();
   const shimmerValue = useSharedValue(0);

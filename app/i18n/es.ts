@@ -5,6 +5,12 @@ const es: Translations = {
     ok: "OK",
     cancel: "Cancelar",
     back: "Volver",
+    episode: "Episodio",
+    airDate: "Fecha de emisión",
+    characters: "Personajes",
+  },
+  navigation: {
+    home: "Inicio",
   },
   welcomeScreen: {
     postscript:
@@ -25,6 +31,11 @@ const es: Translations = {
         "No se han encontrado datos por el momento. Intenta darle clic en el botón para refrescar o recargar la app.",
       button: "Intentemos de nuevo",
     },
+  },
+  episodeScreen: {
+    episodeLabel: "Episodio: {{episode}}",
+    airDateLabel: "Fecha de emisión: {{airDate}}",
+    charactersLabel: "Personajes: {{count}}",
   },
 };
 

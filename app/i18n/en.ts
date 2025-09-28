@@ -3,6 +3,12 @@ const en = {
     ok: "OK!",
     cancel: "Cancel",
     back: "Back",
+    episode: "Episode",
+    airDate: "Air Date",
+    characters: "Characters",
+  },
+  navigation: {
+    home: "Home",
   },
   welcomeScreen: {
     postscript:
@@ -22,6 +28,11 @@ const en = {
       content: "No data found yet. Try clicking the button to refresh or reload the app.",
       button: "Let's try this again",
     },
+  },
+  episodeScreen: {
+    episodeLabel: "Episode: {{episode}}",
+    airDateLabel: "Air Date: {{airDate}}",
+    charactersLabel: "Characters: {{count}}",
   },
 };
 

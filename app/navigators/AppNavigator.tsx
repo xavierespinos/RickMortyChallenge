@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Config from "@/config";
+import { translate } from "@/i18n";
 import EpisodeScreen from "@/screens/EpisodeScreen";
 import { ErrorBoundary } from "@/screens/ErrorScreen/ErrorBoundary";
 import { HomeScreen } from "@/screens/HomeScreen";
@@ -44,7 +45,7 @@ const AppStack = () => {
         },
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Home" }} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ title: translate("navigation:home") }} />
       <Stack.Screen name="Episode" component={EpisodeScreen} />
     </Stack.Navigator>
   );

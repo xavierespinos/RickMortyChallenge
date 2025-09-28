@@ -5,6 +5,12 @@ const fr: Translations = {
     ok: "OK !",
     cancel: "Annuler",
     back: "Retour",
+    episode: "Épisode",
+    airDate: "Date de diffusion",
+    characters: "Personnages",
+  },
+  navigation: {
+    home: "Accueil",
   },
   welcomeScreen: {
     postscript:
@@ -25,6 +31,11 @@ const fr: Translations = {
         "Aucune donnée trouvée pour le moment. Essayez de cliquer sur le bouton pour rafraîchir ou recharger l'application.",
       button: "Essayons à nouveau",
     },
+  },
+  episodeScreen: {
+    episodeLabel: "Épisode: {{episode}}",
+    airDateLabel: "Date de diffusion: {{airDate}}",
+    charactersLabel: "Personnages: {{count}}",
   },
 };
 

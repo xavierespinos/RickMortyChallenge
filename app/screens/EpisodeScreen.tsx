@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { FlatList, Image, View, Dimensions, ViewStyle, ImageStyle, TextStyle } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import { translate } from "@/i18n";
 import { Screen } from "@/components/atoms/Screen";
 import SkeletonBox from "@/components/atoms/SkeletonBox";
 import { Text } from "@/components/atoms/Text";
@@ -53,9 +54,13 @@ const EpisodeScreen: FC<AppStackScreenProps<"Episode">> = ({ route }) => {
     <Screen preset="scroll" contentContainerStyle={themed($screenContainer)}>
       <View style={themed($headerContainer)}>
         <Text preset="heading" text={episode.name} />
-        <Text text={`Episode: ${episode.episode}`} />
-        <Text text={`Air Date: ${episode.air_date}`} />
-        <Text text={`Characters: ${episode.characters.length}`} style={themed($characterCount)} />
+        <Text tx="episodeScreen:episodeLabel" txOptions={{ episode: episode.episode }} />
+        <Text tx="episodeScreen:airDateLabel" txOptions={{ airDate: episode.air_date }} />
+        <Text
+          tx="episodeScreen:charactersLabel"
+          txOptions={{ count: episode.characters.length }}
+          style={themed($characterCount)}
+        />
       </View>
 
       {isLoading ? (
